@@ -1,5 +1,7 @@
 .container-form {
     width: 500px;
+    max-height: 80vh;
+    overflow: auto;
     background: #fff;
     padding: 20px;
     box-sizing: border-box;

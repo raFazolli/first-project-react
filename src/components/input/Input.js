@@ -3,7 +3,7 @@ import "./Input.scss";
 
 
 const Input = (props) => {
-    return <input onChange={props.handlesText}  className="input" value={props.value} type={props.type} placeholder={ props.text }></input>
+    return <input onChange={props.handlesText} onKeyPress={props.keyPress}  className="input" value={props.value} type={props.type} placeholder={ props.text }></input>
 };
 
 export default Input;

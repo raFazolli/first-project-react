@@ -19,35 +19,35 @@ class App extends Component {
     this.setState({text: event.target.value});
   } 
 
-  addList = (event) => {
-    event.preventDefault();
-    
+  addList = () => {
     const { data, text } = this.state;
-    let newList = data; 
 
     if(text !== ' ') {
-      newList.push(text);
-      this.setState({data: newList});
+      this.setState({data: [...data, text], text: ' '});
     }
-
-    this.clearInput();
   }
 
-  clearInput = () => {
-    this.setState({text: ' '});
+  handleKeyPress = event => {
+    if(event.key === 'Enter') {
+      this.addList();
+    }
+  }
+
+  removeListItem = (itemList) => {
+    this.setState({data: this.state.data.filter(item => item !== itemList)});
   }
 
   render() {
     return (
       <div className="container-form">
-        <Input handlesText={(event => this.handleInput(event))} value={this.state.text} type="text" text="Insira uma tarefa"/>
-        <Button handleClick={event => this.addList(event)} innerText="Salvar"/>
+        <Input handlesText={(event => this.handleInput(event))} keyPress={this.handleKeyPress} value={this.state.text} type="text" text="Insira uma tarefa"/>
+        <Button handleClick={() => this.addList()} innerText="Salvar"/>
 
         <div className="container-list">
           {
             this.state.data.map((data, i) => {
               return (
-                <List item={data} key={i} />
+                <List item={data} removeItem={() => this.removeListItem(data)} key={i} />
               )
             })
           }

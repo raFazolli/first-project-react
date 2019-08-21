@@ -4,4 +4,20 @@
     background: #f7f7f7;
     border-bottom: 1px solid #eee;
     text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    transition: all .3s ease-in-out;
+    &__icons {
+        &_item {
+            margin: 0 5px;
+            cursor: pointer;
+            &--disabled {
+                color: #52ff77;
+            }
+        }
+        &--done {
+            background: #52ff77;
+            color: #fff;
+        }
+    }
 }
